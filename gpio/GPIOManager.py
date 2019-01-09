@@ -3,12 +3,12 @@ from gpiozero import LED
 leds = {}
 
 class GPIOManager():
-	def set_state(port, status):
+	def set_state(port, state):
 		if port not in leds:
 			leds[port] = LED(int(port))
 
 		led = leds[port]
-		if status=="on":
+		if state=="on":
 			led.on()
 		else:
 			led.off()
