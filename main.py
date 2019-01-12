@@ -4,11 +4,22 @@ from flask_restful import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-from gpio import GPIOManager
+# IO Manager:
+from gpio.GPIOManager import GPIOManager
+gpioManager = GPIOManager()
+
+# Rest Controller
 from raspberryio.controller import RaspberryIOController
 
-api.add_resource(RaspberryIOController, '/gpio/<string:port>',
-    resource_class_kwargs={ 'gpio_manager': GPIOManager() })
+# define url mappings
+api.add_resource(RaspberryIOController, '/gpio/<string:port>', resource_class_kwargs={ 'gpio_manager': gpioManager })
 
+# for UI mapping:
+from flask import render_template
+@app.route('/')
+def hello_world():
+    return render_template('hello.html')
+
+# To run app:
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True) # Never ever use turn on debug mode in prod!
