@@ -27,11 +27,8 @@ class GPIOManager():
 import atexit
 
 def cleanup():
-	for port in leds.keys():
-		led = leds[port]
+	for port, led in leds.items():
 		led.close()
-		del leds[port]
-		del led	
-		print("cleaned LED for port:", port)
+		print("closed LED for port:", port)
 
 atexit.register(cleanup)
