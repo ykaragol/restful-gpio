@@ -22,4 +22,4 @@ def hello_world():
 
 # To run app:
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True) # Never ever use turn on debug mode in prod!
+    app.run(host='0.0.0.0', debug=True) # Never ever use in debug mode at prod!
